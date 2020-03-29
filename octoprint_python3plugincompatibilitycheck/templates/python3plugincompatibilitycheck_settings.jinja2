@@ -1,0 +1,5 @@
+<div data-bind="visible: incompatible().length == 0" class="row-fluid"><button class="btn btn-primary" data-bind="click: checkPlugins">Check Compatibility</button></div>
+<h4 data-bind="visible: incompatible().length > 0">Incompatible Python 3 Plugins<br/><small>Use the links below to open an issue in the linked plugin's repository to request Python 3 compatibility.</small></h4>
+<div class="row-fluid" data-bind="foreach: incompatible">
+	<div class="row-fluid"><a href="#" target="_blank" data-bind="attr: {href: homepage}, text: title"></a></div>
+</div>

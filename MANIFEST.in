@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_python3plugincompatibilitycheck/templates *
+recursive-include octoprint_python3plugincompatibilitycheck/translations *
+recursive-include octoprint_python3plugincompatibilitycheck/static *
