@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 
 import octoprint.plugin
+from octoprint.util import version
 import requests
 import flask
 
@@ -34,8 +35,13 @@ class Python3plugincompatibilitycheckPlugin(octoprint.plugin.SettingsPlugin,
 
 	def on_api_get(self, request):
 		webresponse = requests.get("https://plugins.octoprint.org/plugins.json")
-		response = webresponse.json()
-		return flask.jsonify(response)
+		plugins = webresponse.json()
+		if request.args.get("python_version"):
+			check_against = request.args.get("python_version")
+			for entry in plugins:
+				to_check = entry.get("compatibility", dict()).get("python", ">=2.7,<3")
+				entry["python_compat"] = version.is_python_compatible(to_check, python_version=check_against)
+		return flask.jsonify(plugins)
 
 	##~~ Softwareupdate hook
 

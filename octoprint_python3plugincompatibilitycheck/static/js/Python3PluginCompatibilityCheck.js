@@ -12,16 +12,18 @@ $(function() {
 		self.pluginManagerViewModel = parameters[1];
 		self.errorMessage = ko.observable(false);
 		self.checking = ko.observable(false);
+		self.python_version = ko.observable(3.6);
 
 		self.plugins = ko.observableArray([]);
 		self.incompatible = ko.computed(function(){
 			return ko.utils.arrayFilter(self.plugins(), function(item) {
-				return self.pluginManagerViewModel.installedPlugins().includes(item.id()) && item.compatibility.python().indexOf('<4') < 0;
+				return self.pluginManagerViewModel.installedPlugins().includes(item.id()) && item.python_compat() == false;
 			});
 		});
 
 		self.onSettingsHidden = function(){
 			self.errorMessage(false);
+			self.checking(false);
 			self.plugins([]);
 		};
 
@@ -29,6 +31,9 @@ $(function() {
 			self.checking(true);
 			$.ajax({
 				url: API_BASEURL + "plugin/python3plugincompatibilitycheck",
+				type: "GET",
+				dataType: "json",
+				data: {python_version:self.python_version()},
 				contentType: "application/json; charset=UTF-8"
 			}).done(function(data){
 				self.plugins(ko.mapping.fromJS(data)());
