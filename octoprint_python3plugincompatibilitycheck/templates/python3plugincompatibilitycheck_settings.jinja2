@@ -2,12 +2,13 @@
 	<div class="input-group">
 		<div class=" input-append input-prepend">
 			<span class="add-on" style="margin-left: 0px;">Python Version:</span>
-			<input type="number" min="3.0" max="3.9" step="0.1" class="input-mini" data-bind="textInput: python_version, enable: !checking(), css: {disabled: checking()}"></input>
-			<button class="btn btn-primary add-on" style="height: auto;" data-bind="click: checkPlugins, enable: !checking() && python_version() >= 3 && python_version() < 4, css: {disabled: checking() && python_version() < 3 && python_version() >= 4}"><i class="icon icon-spinner icon-spin" data-bind="visible: checking"></i> Check Compatibility </button>
+			<input type="number" min="3.0" max="3.9" step="0.1" class="input-mini" data-bind="textInput: python_version, enable: checking().length == 0, css: {disabled: checking().length > 0}"></input>
+			<button class="btn btn-primary add-on" style="height: auto;" data-bind="click: checkPlugins, enable: checking().length == 0 && python_version() >= 3 && python_version() < 4, css: {disabled: checking().length > 0 && python_version() < 3 && python_version() >= 4}"><i class="icon icon-spinner icon-spin" data-bind="visible: checking().length > 0"></i> Check Compatibility </button>
 		</div>
 	</div>
 </div>
 <div class="row-fluid" data-bind="visible: errorMessage"><small style="color: red;">There was an error retrieving last updated dates, either due to rate limiting on Github's API (60 requests per hour) or a plugin's homepage is not configured for a Github repository. Please try again later.</small></div>
+<div class="row-fluid" data-bind="visible: allCompatible"><small style="color: green;">Congratulations, all installed plugins are Python 3 Compatible.</small></div>
 <h4 data-bind="visible: incompatible().length > 0">Incompatible Python <span data-bind="text: python_version()"></span> Plugins<br/><small>Use the links below to open an issue in the linked plugin's repository to request Python 3 compatibility.</small></h4>
 <div class="row-fluid" data-bind="foreach: incompatible">
 	<div class="row-fluid"><a href="#" target="_blank" data-bind="attr: {href: homepage}, text: title"></a></div>
