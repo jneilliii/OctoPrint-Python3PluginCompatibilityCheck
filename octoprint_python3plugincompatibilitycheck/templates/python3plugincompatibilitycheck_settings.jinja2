@@ -11,5 +11,5 @@
 <div class="row-fluid" data-bind="visible: allCompatible"><small style="color: green;">Congratulations, all installed plugins are Python 3 Compatible.</small></div>
 <h4 data-bind="visible: incompatible().length > 0">Incompatible Python <span data-bind="text: python_version()"></span> Plugins<br/><small>Use the links below to open an issue in the linked plugin's repository to request Python 3 compatibility.</small></h4>
 <div class="row-fluid" data-bind="foreach: incompatible">
-	<div class="row-fluid"><a href="#" target="_blank" data-bind="attr: {href: homepage}, text: title"></a></div>
+	<div class="row-fluid"><a href="#" target="_blank" data-bind="attr: {href: $root.issue_url(homepage())}, text: title"></a></div>
 </div>
