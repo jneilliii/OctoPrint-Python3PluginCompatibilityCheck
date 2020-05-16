@@ -61,7 +61,7 @@ class Python3plugincompatibilitycheckPlugin(octoprint.plugin.SettingsPlugin,
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/jneilliii/OctoPrint-Python3PluginCompatibilityCheck/releases/download/{target_version}/{target_version}.zip"
+				pip="https://github.com/jneilliii/OctoPrint-Python3PluginCompatibilityCheck/releases/latest/download/{target_version}.zip"
 			)
 		)
 

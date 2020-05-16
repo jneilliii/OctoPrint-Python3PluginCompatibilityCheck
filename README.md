@@ -1,5 +1,7 @@
 # Python 3 Check
 
+![GitHub Downloads](https://badgen.net/github/assets-dl/jneilliii/OctoPrint-Python3PluginCompatibilityCheck/)
+
 This plugin simply adds a section in settings that allows you to check your installed plugins against the OctoPrint Plugin Repository list to see which ones are not yet Python 3 compatible.
 
 ## Checking Compatibility
