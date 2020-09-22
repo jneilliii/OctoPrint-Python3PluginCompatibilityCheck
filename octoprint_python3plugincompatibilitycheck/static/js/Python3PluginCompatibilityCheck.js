@@ -22,7 +22,7 @@ $(function() {
 		});
 
 		self.issue_url = function(homepage_url){
-			var issue_url = homepage_url.replace(/\/$/, "") + '/issues/new?title=%5BFeature%20Request%5D%20Python%203%20Compatibility&body=Please%20add%20Python%203%20Compatibility%20as%20outlined%20%5Bhere%5D%28https%3A%2F%2Fdocs.octoprint.org%2Fen%2Fmaster%2Fplugins%2Fpython3_migration.html%29.';
+			var issue_url = homepage_url.replace(/\/$/, "") + '/issues?q=is%3Aissue+python+3';
 			return (homepage_url.indexOf('https://github.com/') > -1)  ? issue_url : homepage_url;
 		}
 
